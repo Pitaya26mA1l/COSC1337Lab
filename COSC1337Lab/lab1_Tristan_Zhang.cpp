@@ -10,13 +10,14 @@
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
+#include "lab2_Card_Class_Tristan_Zhang.cpp"
 
 using namespace std;
 
 void highCard();
-int getOneRandomNum();
 void lowCardOfThree();
 void oneHandPoker();
+void displayPlayerCardValue(string, Card);
 
 /* Function:  main
 
@@ -28,8 +29,6 @@ Purpose:   This function contains the main logic of displaying the menu and opti
 */
 
 int main() {
-    // Seed once
-    srand(static_cast<unsigned>(time(0)));
     
     int userChoice;
     
@@ -44,6 +43,7 @@ int main() {
              << "4. Quit.\n";
         cout << "Enter choice: ";
         cin >> userChoice;
+        
         //Check if user entered valid option
         while (userChoice < 1 || userChoice > 4)
         {
@@ -53,6 +53,7 @@ int main() {
         }
     
         // Decide which choice was entered and call the corresponding function if choice 1-3 or quit if choice 4
+        cin.ignore();
         if (userChoice == 1)
             highCard();
         else if (userChoice == 2)
@@ -79,91 +80,43 @@ Purpose:   This function generates two random numbers from 1-13 representing two
 */
 
 void highCard(){
-    //Generate two random numbers representing two separate players
-    int playerOneNum;
-    int playerTwoNum;
-    playerOneNum = getOneRandomNum();
-    playerTwoNum = getOneRandomNum();
+    string playerOneName, playerTwoName;
+    
+    cout << "Player 1, enter name...";
+    getline(cin, playerOneName);
+    cout << "Player 2, enter name...";
+    getline(cin, playerTwoName);
+    
+    Card cardPlayer1;
+    Card cardPlayer2;
+    
+    cardPlayer1.deal();
+    cardPlayer2.deal();
+    
+
     
     //Display player 1's card
-    if (playerOneNum == 1)
-        cout << "Player 1 gets an ace.\n";
-    else if (playerOneNum == 2)
-        cout << "Player 1 gets a two.\n";
-    else if (playerOneNum == 3)
-        cout << "Player 1 gets a three.\n";
-    else if (playerOneNum == 4)
-        cout << "Player 1 gets a four.\n";
-    else if (playerOneNum == 5)
-        cout << "Player 1 gets a five.\n";
-    else if (playerOneNum == 6)
-        cout << "Player 1 gets a six.\n";
-    else if (playerOneNum == 7)
-        cout << "Player 1 gets a seven.\n";
-    else if (playerOneNum == 8)
-        cout << "Player 1 gets an eight.\n";
-    else if (playerOneNum == 9)
-        cout << "Player 1 gets a nine.\n";
-    else if (playerOneNum == 10)
-        cout << "Player 1 gets a ten.\n";
-    else if (playerOneNum == 11)
-        cout << "Player 1 gets a jack.\n";
-    else if (playerOneNum == 12)
-        cout << "Player 1 gets a queen.\n";
-    else if (playerOneNum == 13)
-        cout << "Player 1 gets a king.\n";
-    
+    displayPlayerCardValue(playerOneName, cardPlayer1);
     //Display player 2's card
-    if (playerTwoNum == 1)
-        cout << "Player 2 gets an ace.\n";
-    else if (playerTwoNum == 2)
-        cout << "Player 2 gets a two.\n";
-    else if (playerTwoNum == 3)
-        cout << "Player 2 gets a three.\n";
-    else if (playerTwoNum == 4)
-        cout << "Player 2 gets a four.\n";
-    else if (playerTwoNum == 5)
-        cout << "Player 2 gets a five.\n";
-    else if (playerTwoNum == 6)
-        cout << "Player 2 gets a six.\n";
-    else if (playerTwoNum == 7)
-        cout << "Player 2 gets a seven.\n";
-    else if (playerTwoNum == 8)
-        cout << "Player 2 gets an eight.\n";
-    else if (playerTwoNum == 9)
-        cout << "Player 2 gets a nine.\n";
-    else if (playerTwoNum == 10)
-        cout << "Player 2 gets a ten.\n";
-    else if (playerTwoNum == 11)
-        cout << "Player 2 gets a jack.\n";
-    else if (playerTwoNum == 12)
-        cout << "Player 2 gets a queen.\n";
-    else if (playerTwoNum == 13)
-        cout << "Player 2 gets a king.\n";
-    
+    displayPlayerCardValue(playerTwoName, cardPlayer2);
     //Compare players' cards and display who won
-    if (!(playerOneNum == 1 || playerTwoNum == 1))
+
+    if (!(cardPlayer1.getValue() == 1 || cardPlayer2.getValue() == 1))
     {
-        if (playerOneNum > playerTwoNum)
-            cout << "Player 1 wins.\n";
-        else if (playerOneNum < playerTwoNum)
-            cout << "Player 2 wins.\n";
+        if (cardPlayer1.getValue() > cardPlayer2.getValue())
+            cout << playerOneName << " wins.\n";
+        else if (cardPlayer1.getValue() < cardPlayer2.getValue())
+            cout << playerTwoName << " wins.\n";
         else
             cout << "It's a tie.\n";
     }
-    else if (playerOneNum < playerTwoNum)
-        cout << "Player 1 wins.\n";
-    else if(playerOneNum > playerTwoNum)
-        cout << "Player 2 wins.\n";
+    else if (cardPlayer1.getValue() < cardPlayer2.getValue())
+        cout << playerOneName << " wins.\n";
+    else if(cardPlayer1.getValue() > cardPlayer2.getValue())
+        cout << playerTwoName << " wins.\n";
     else
         cout << "It's a tie.\n";
-}
 
-//Generate a random number from 1-13
-int getOneRandomNum(){
-    const int upperLimit = 13;
-    int num = rand() % upperLimit + 1;
-    return num;
 }
 
 //Function representing Low Card of Three game
@@ -177,5 +130,32 @@ void oneHandPoker(){
     cout << "This game has not been developed.";
 }
 
-
+void displayPlayerCardValue(string nameOfPlayer, Card c){
+    if (c.getValue() == 1)
+        cout << nameOfPlayer << " gets an ace.\n";
+    else if (c.getValue() == 2)
+        cout << nameOfPlayer << " gets a two.\n";
+    else if (c.getValue() == 3)
+        cout << nameOfPlayer << " gets a three.\n";
+    else if (c.getValue() == 4)
+        cout << nameOfPlayer << " gets a four.\n";
+    else if (c.getValue() == 5)
+        cout << nameOfPlayer << " gets a five.\n";
+    else if (c.getValue() == 6)
+        cout << nameOfPlayer << " gets a six.\n";
+    else if (c.getValue() == 7)
+        cout << nameOfPlayer << " gets a seven.\n";
+    else if (c.getValue() == 8)
+        cout << nameOfPlayer << " gets an eight.\n";
+    else if (c.getValue() == 9)
+        cout << nameOfPlayer << " gets a nine.\n";
+    else if (c.getValue() == 10)
+        cout << nameOfPlayer << " gets a ten.\n";
+    else if (c.getValue() == 11)
+        cout << nameOfPlayer << " gets a jack.\n";
+    else if (c.getValue() == 12)
+        cout << nameOfPlayer << " gets a queen.\n";
+    else if (c.getValue() == 13)
+        cout << nameOfPlayer << " gets a king.\n";
+}
 

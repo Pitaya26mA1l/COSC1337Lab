@@ -1,5 +1,5 @@
 //
-//  lab2_Card_Class_Firstname_Lastname.cpp
+//  lab2_Card_Class_Tristan_Zhang.cpp
 //  COSC1337Lab
 //
 //  Created by Tristan Zhang on 6/27/26.
