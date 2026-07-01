@@ -122,7 +122,81 @@ void highCard(){
 //Function representing Low Card of Three game
 void lowCardOfThree()
 {
-    cout << "This game has not been developed.";
+    string playerOneName, playerTwoName;
+    
+    cout << "Player 1, enter name...";
+    getline(cin, playerOneName);
+    cout << "Player 2, enter name...";
+    getline(cin, playerTwoName);
+    
+    Card playerOneDeck[3];
+    Card playerTwoDeck[3];
+    
+    //Deal each player's cards in their deck of cards
+    for(int i = 0; i < 3; i++){
+        playerOneDeck[i].deal();
+        playerTwoDeck[i].deal();
+    }
+    
+    //Display player 1's cards
+    for(int i = 0; i < 3; i++){
+        displayPlayerCardValue(playerOneName, playerOneDeck[i]);
+    }
+    
+    //Display player 2's cards
+    for(int i = 0; i < 3; i++){
+        displayPlayerCardValue(playerTwoName, playerTwoDeck[i]);
+    }
+    
+    //Get player 1's lowest card
+    int playerOneLowestCard = playerOneDeck[0].getValue();
+    for( int i = 0; i < 2; i++){
+        if(playerOneLowestCard == 1){
+            if(playerOneLowestCard < playerOneDeck[i + 1].getValue())
+                playerOneLowestCard = playerOneDeck[i + 1].getValue();
+        }
+        else{
+            if (playerOneLowestCard > playerOneDeck[i + 1].getValue() && !(playerOneDeck[i + 1].getValue() == 1))
+                playerOneLowestCard = playerOneDeck[i + 1].getValue();
+        }
+    }
+    
+    //Test code to check player 1's lowest
+    cout << playerOneName << " has lowest card value of " << playerOneLowestCard << "\n";
+    
+    //Get player 2's lowest card
+    int playerTwoLowestCard = playerTwoDeck[0].getValue();
+    for( int i = 0; i < 2; i++){
+        if(playerTwoLowestCard == 1){
+            if(playerTwoLowestCard < playerTwoDeck[i + 1].getValue())
+                playerTwoLowestCard = playerTwoDeck[i + 1].getValue();
+        }
+        else{
+            if (playerTwoLowestCard > playerTwoDeck[i + 1].getValue() && !(playerTwoDeck[i + 1].getValue() == 1))
+                playerTwoLowestCard = playerTwoDeck[i + 1].getValue();
+        }
+    }
+    
+    //Test code to check player 2's lowest
+    cout << playerTwoName << " has lowest card value of " << playerTwoLowestCard << "\n";
+    
+    //Compare players' lowest cards
+    if (!(playerOneLowestCard == 1 || playerTwoLowestCard == 1))
+    {
+        if (playerOneLowestCard < playerTwoLowestCard)
+            cout << playerOneName << " wins.\n";
+        else if (playerOneLowestCard > playerTwoLowestCard)
+            cout << playerTwoName << " wins.\n";
+        else
+            cout << "It's a tie.\n";
+    }
+    else if (playerOneLowestCard > playerTwoLowestCard)
+        cout << playerOneName << " wins.\n";
+    else if(playerOneLowestCard < playerTwoLowestCard)
+        cout << playerTwoName << " wins.\n";
+    else
+        cout << "It's a tie.\n";
+    
 }
 
 //Function representing One Hand Poker game
