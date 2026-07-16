@@ -26,7 +26,8 @@
 		6A141FD32FF48CEC00C3D81A /* Exceptions for "COSC1337Lab" folder in "COSC1337Lab" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				lab2_Card_Class_Tristan_Zhang.cpp,
+				lab3_Card_Class_Tristan_Zhang.cpp,
+				lab3_Hand_Class_Tristan_Zhang.cpp,
 			);
 			target = 6A6DA5A02FEC5CCB00DDA0EB /* COSC1337Lab */;
 		};
