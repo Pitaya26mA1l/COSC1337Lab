@@ -31,11 +31,13 @@ int Hand::getNumCards() {
     return numCards;
 }
 
+//Method to deal each Card object in the handOfThree array
 void Hand::dealHand() {
     for(int i = 0; i < 3; i++)
         handOfThree[i].deal();
 }
 
+//Method to display of a card their face value name and suit value name
 void Hand::getCardFaceValues(int index, string &faceValueName, string &suitName) {
     if((index < 0) || (index > 2)){
         faceValueName = "None";
@@ -46,6 +48,7 @@ void Hand::getCardFaceValues(int index, string &faceValueName, string &suitName)
     }
 }
 
+//Method to display of a card their value number and suit number
 void Hand::getCardNumericValues(int index, int &cardValueInt, int &cardSuitInt) {
     if((index < 0) || (index > 2)){
         cardValueInt = 0;
@@ -57,6 +60,7 @@ void Hand::getCardNumericValues(int index, int &cardValueInt, int &cardSuitInt) 
     }
 }
 
+//Sort the cards in the array handOfThree in ascending order of card with the lowest to highest value
 void Hand::sortHands() {
     int currIndex, minIndex;
     Card temp;
