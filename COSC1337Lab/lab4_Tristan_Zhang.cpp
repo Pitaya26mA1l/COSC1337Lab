@@ -18,9 +18,10 @@
  as the High Card game. Then the game displays which player has won with the
  lowest value of their deck of cards.
     In more detail, the Low Card of Three game function lets the two players
- input their names and creates two arrays of Card objects each of size three,
- one for each player, and utilizes the deal() method in the Card class to deal
- a random value for each card in each player's' deck. The lowest card of each
+ input their names and creates two Hand objects each having a private data
+ attribute array of size three representing the number of cards in each hand,
+ one for each player, and utilizes the dealHand() method in the Hand class to deal
+ a random value for each card in each player's' hand. The lowest card of each
  player's deck is then compared and it is displayed which player with the
  lowest has the lowest card and therefore wins.
     There are three possible card games with a function representing each:

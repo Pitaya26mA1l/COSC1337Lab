@@ -20,7 +20,9 @@ private:
     
 public:
     Card();
-
+    
+    void setValue(int inputValue);
+    void setSuit(int inputSuit);
     int getValue();
     int getSuit();
     void deal();
@@ -30,6 +32,15 @@ public:
 //Constructor to set the default suit and value of the Card object
 Card::Card() {
     value = suit = -1;
+}
+
+//Mutator methods to test Poker hands
+void Card::setValue(int inputValue) {
+    value = inputValue;
+}
+
+void Card::setSuit(int inputSuit) {
+    suit = inputSuit;
 }
 
 //Accessor methods
